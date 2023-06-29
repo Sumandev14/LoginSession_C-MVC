@@ -1,0 +1,37 @@
+﻿@model SchoolManagement_380.Models.DbContext.Country
+
+@{
+    ViewBag.Title = "CountryList";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<div class="Container" style="margin-top:65px; margin-bottom : 50px">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Country Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in ViewBag.Country)
+            {
+                <tr>
+                    <td>@item.CountryName</td>
+                    <td>
+                        <a class="btn btn-info" href="/Country/GetCountryid/@item.CountryId">Details</a>
+                        <a class="btn btn-primary" href="/Country/AddEdit/@item.CountryId">Edit</a>
+                        <a class="btn btn-danger" href="/country/DeleteCountry/@item.CountryId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@*<div class="text-right">
+    <a href="/Registration/CreateReg" style="font-size:20px"><b>Create Registratio!!</b></a>
+</div>*@
+

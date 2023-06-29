@@ -1,0 +1,183 @@
+﻿@model SchoolManagement_380.Models.Models.OrderModel
+
+@{
+    ViewBag.Title = "OrderViewList";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="form-group text-center">
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(x => x.ProductId, new SelectList(ViewBag.ItemList, "ItemId", "ItemsName"), "Select Item", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Quantityt, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Quantity" } })
+                        @Html.ValidationMessageFor(model => model.Quantityt, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="text-center col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-outline-success" />
+                    </div>
+                </div>
+
+
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.GetOrders)
+                        {
+                            <tr>
+                                <td>@item.ItemsName</td>
+                                <td>@item.Quantityt</td>
+                                <td>@item.ItemPrice</td>
+                                <td>@item.Total</td>
+                                <td>
+                                    <a class="btn btn-secondary" href="/Order/OrderViewList/@item.OrderId">Edit</a>
+                                    <a class="btn btn-danger" href="/Order/Delete/@item.OrderId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tr>
+                        <td style="border-right:hidden"></td>
+                        <td style="border-right:hidden" id="countId">Total Amount  &nbsp;  @ViewBag.Count : </td>
+                        <td></td>
+                        <td id="totalAmountId">@ViewBag.TotalAmount</td>
+                        <td></td>
+                    </tr>
+                </table>
+
+
+                <div class="text-center">
+                    <h5 id="sgstId">SGST 5% : @ViewBag.Gst</h5>
+                    <h5 id="cgdtId">CGST 5% : @ViewBag.Gst</h5>
+                    Total Paybel Amount : <h5 id="paybel" class="paybel">@ViewBag.Payble</h5>
+
+                    <div class="row">
+                        <div class="text-center col-md-5">
+                            <input type="text" class="form-control" name="Code" id="couponCode" placeholder="Enter Coupon" />
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" id="CoupenFormId" class="btn btn-outline-success">Apply</button>
+                        </div>
+                    </div>
+
+
+                    <h5 id="NetAmt" class="NetAmt">@ViewBag.netPayment</h5>
+
+                </div>
+            }
+
+
+
+
+            <div class="text-center" style="margin-top:20px">
+                <button type="submit" id="FormId" class="btn btn-success">Submit</button>
+            </div>
+                <div id="tableContainer" style="margin-top:20px"></div> <!-- Container for the table -->
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#CoupenFormId").click(function (event) {
+            var netAmount = parseFloat($('#paybel').html());
+            var data = [];
+            var coupanId = $('#couponCode').val();
+            console.log(coupanId)
+            $.ajax({
+                type: 'GET',
+                url: "/Order/ApplyCoupon?Code=" + coupanId,
+                success: (res) => {
+                    console.log(res)
+                    // var data = JSON.parse(res)
+                    if (res && res.Type == 1) {
+                        $('#NetAmt').text('Net Paybel Amount: ' + parseFloat(netAmount - res.DiscountAmount));
+                    }
+                    else if (res && res.Type == 2) {
+                        var am = netAmount - (netAmount * res.DiscountAmount) / 100
+                        console.log(am)
+                        $('#NetAmt').text('Net Paybel Amount: ' + am);
+                    }
+                    else {
+                        alert("Coupen not exist!!!");
+                        return;
+                    }
+                }
+            })
+        })
+
+        $("#FormId").click(function () {
+            //var expairyDate = $()
+            var count = $("#countId").text().trim();
+            var Amount = $("#totalAmountId").text().trim();
+            var afterGST = $("#paybel").text().trim();
+            var coupanId = $('#couponCode').val();
+            var totalAmount = $("#totalAmountId").text();
+            var cgst = $("#cgdtId").text().trim().split(":")[1].trim();
+            var sgst = $("#sgstId").text().trim().split(":")[1].trim();
+            console.log(count);
+            var tableData = `
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Count</th>
+                            <th>Amount</th>
+                            <th>After Gst</th>
+                            <th>Promo Code</th>
+                            <th>Total Paybel</th>
+                            <th>CGST</th>
+                            <th>SGST</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>${count}</td>
+                            <td>${Amount}</td>
+                            <td>${afterGST}</td>
+                            <td>${coupanId}</td>
+                            <td>${totalAmount}</td>
+                            <td>${cgst}</td>
+                            <td>${sgst}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+
+            $("#tableContainer").html(tableData);
+        });
+
+    })
+
+</script>
+

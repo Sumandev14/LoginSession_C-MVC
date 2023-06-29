@@ -1,0 +1,34 @@
+﻿@model SchoolManagement_380.Models.Models.RegModel
+
+@{
+    ViewBag.Title = "singleUserDetails";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="Container" style="margin-top:65px; margin-bottom : 50px">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>RoleName</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>@Model.UserName</td>
+                <td>@Model.RegNo</td>
+                <td>@Model.Address</td>
+                <td>@Model.Email</td>
+                <td>@Model.Password</td>
+                <td>
+                    <a class="btn btn-outline-success" href="/Registration/GetRegistration">All Detail</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

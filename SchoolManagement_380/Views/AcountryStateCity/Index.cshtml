@@ -1,0 +1,73 @@
+﻿@model SchoolManagement_380.Models.Models.CityModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>StateModel</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @if (ViewBag.CountryList != null)
+        {
+            @Html.DropDownListFor(model => model.CountryId, ViewBag.CountryList as SelectList, "--Select Country--", new { @class = "form-control" })
+        }
+    </div>
+
+    <div class="form-group">
+       
+            @Html.DropDownListFor(model => model.StateId, new SelectList(" "), "--Select State--", new { @class = "form-control" })
+        
+    </div>
+
+    <div class="form-group">
+        @Html.DropDownListFor(model => model.Cityid, new SelectList(" "), "--Select City--", new { @class = "form-control" })
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Script{
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#CountryId").change(function () {
+                $.get("/AcountryStateCity/GetState", { CountryId: $("#CountryId").val() }, function (data) {
+                    $("#StateId").empty();
+                    $.each(data, function(index, row){
+                        $("#StateId").append("<option value='" + row.StateId + "'>" + row.StateName + "</option>")
+                    })
+                })
+            })
+
+            $("#StateId").change(function () {
+                $.get("/AcountryStateCity/GetCity", { StateId: $("#StateId").val() }, function (data) {
+                    $("#Cityid").empty();
+                    $.each(data, function (index, row) {
+                        console.log(row)
+                        $("#Cityid").append("<option value='" + row.Cityid + "'>" + row.CityName + "</option>")
+                    })
+                })
+            })
+        })
+    </script>
+} 

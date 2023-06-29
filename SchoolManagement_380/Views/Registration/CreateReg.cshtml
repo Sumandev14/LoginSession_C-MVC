@@ -1,0 +1,86 @@
+﻿@model SchoolManagement_380.Models.Models.RegModel
+    @using SchoolManagement_380.Helpers.Enum
+
+@{
+    ViewBag.Title = "CreateReg";
+    Layout = "~/Views/Shared/_ThemeLayout.cshtml";
+}
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                        </div>
+                        @using (Html.BeginForm("CreateReg", "Registration", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => model.StdId)
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = "UserName" } })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.DropDownListFor(model => model.RegNo, EnumHelper.GetSelectList(typeof(StdEnum)), "Select RoleType", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RegNo, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = "Address" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = "Email" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = "Password" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.ConFormPassword, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = "Conform Password" } })
+                                @Html.ValidationMessageFor(model => model.ConFormPassword, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="text-center col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-outline-success" />
+                                </div>
+                            </div>
+
+                            <hr>
+                            <a href="index.html" class="btn btn-google btn-user btn-block">
+                                <i class="fab fa-google fa-fw"></i> Register with Google
+                            </a>
+                            <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                            </a>
+                            }
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small">@Html.ActionLink("Already have an account? Login! ", "CreateLogin", "Login")</a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="text-center">
+    <a class="small">@Html.ActionLink("Go to List !! ", "GetRegistration", "Registration")</a>
+</div>

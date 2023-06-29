@@ -1,0 +1,68 @@
+﻿@model SchoolManagement_380.Models.Models.LocalStorageModel
+
+@{
+    ViewBag.Title = "LocalStorageView";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(x => x.UserId)
+        @Html.TextBoxFor(x => x.UserId, new { @class = "form-control", @id = "UserId" })
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.UserName)
+        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", @id = "UserName" })
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Email)
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @id = "Email" })
+    </div>
+
+    <div style="margin-top:25px">
+        <input type="submit" value="Create" class="btn-outline-success" onclick="SaveDetails()" />
+        <input type="button" value="Show" class="btn-outline-info" onclick="ShowDetails()" />
+        <input type="submit" value="Reset" class="btn-outline-warning" onclick="DeleteDetails()" />
+    </div>}
+
+<div>
+    @Html.ActionLink("Back to List", "")
+</div>
+
+@section Script{
+
+    <script type="text/javascript">
+        function SaveDetails() {
+            var UserId = $("#UserId").val();
+            var UserName = $("#UserName").val();
+            var Email = $("#Email").val();
+
+            $("#UserId").val("");
+            $("#UserName").val("");
+            $("#Email").val();
+            localStorage.setItem("UserId", UserId);
+            localStorage.setItem("UserName", UserName);
+            localStorage.setItem("Email", Email);
+        }
+
+        function ShowDetails() {
+            var UserId = localStorage.getItem("UserId");
+            var UserName = localStorage.getItem("UserName");
+            var Email = localStorage.getItem("Email");
+
+            $("#UserId").val(UserId);
+            $("#UserName").val(UserName);
+            $("#Email").val(Email);
+        }
+
+        function DeleteDetails() {
+            localStorage.removeItem('UserId')
+            localStorage.removeItem('UserName')
+            localStorage.removeItem('Email')
+        }
+    </script>
+}
+

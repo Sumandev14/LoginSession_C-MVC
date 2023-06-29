@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Sandhya_380ModelStoreContainer" CdmEntityContainer="Sandhya_380Entities">
+    <EntitySetMapping Name="stdRegistration">
+      <EntityTypeMapping TypeName="Sandhya_380Model.stdRegistration">
+        <MappingFragment StoreEntitySet="stdRegistration">
+          <ScalarProperty Name="StdId" ColumnName="StdId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="RegNo" ColumnName="RegNo" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ConFormPassword" ColumnName="ConFormPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

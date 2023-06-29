@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Sandhya_380Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CouponCode">
+    <Key>
+      <PropertyRef Name="CouponICoded" />
+    </Key>
+    <Property Name="CouponICoded" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="Int32" />
+    <Property Name="Expirydate" Type="DateTime" Precision="0" />
+    <Property Name="UsageLimit" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="DiscountAmount" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Items">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemsName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ItemPrice" Type="Int32" />
+    <NavigationProperty Name="orders" Relationship="Self.FK__orders__ProductI__04E4BC85" FromRole="Items" ToRole="orders" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Quantityt" Type="Int32" />
+    <Property Name="Total" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Price" Type="Int32" />
+    <NavigationProperty Name="Items" Relationship="Self.FK__orders__ProductI__04E4BC85" FromRole="orders" ToRole="Items" />
+    <NavigationProperty Name="UserName" Relationship="Self.FK__orders__UserId__05D8E0BE" FromRole="orders" ToRole="UserName" />
+  </EntityType>
+  <EntityType Name="UserName">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="orders" Relationship="Self.FK__orders__UserId__05D8E0BE" FromRole="UserName" ToRole="orders" />
+  </EntityType>
+  <Association Name="FK__orders__ProductI__04E4BC85">
+    <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Items">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__orders__UserId__05D8E0BE">
+    <End Role="UserName" Type="Self.UserName" Multiplicity="0..1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserName">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Sandhya_380Entities12" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CouponCode" EntityType="Self.CouponCode" />
+    <EntitySet Name="Items" EntityType="Self.Items" />
+    <EntitySet Name="orders" EntityType="Self.orders" />
+    <EntitySet Name="UserName" EntityType="Self.UserName" />
+    <AssociationSet Name="FK__orders__ProductI__04E4BC85" Association="Self.FK__orders__ProductI__04E4BC85">
+      <End Role="Items" EntitySet="Items" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__orders__UserId__05D8E0BE" Association="Self.FK__orders__UserId__05D8E0BE">
+      <End Role="UserName" EntitySet="UserName" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <FunctionImport Name="Sp_state_country_city" ReturnType="Collection(Sandhya_380Model1.Sp_state_country_city_Result)" />
+    <FunctionImport Name="state_country" ReturnType="Collection(Sandhya_380Model1.state_country_Result)" />
+    <FunctionImport Name="state_country_city" ReturnType="Collection(Sandhya_380Model1.state_country_city_Result)" />
+    <FunctionImport Name="Test_Order_Item" ReturnType="Collection(Sandhya_380Model1.Test_Order_Item_Result)" />
+  </EntityContainer>
+  <ComplexType Name="Sp_state_country_city_Result">
+    <Property Type="Int32" Name="CountryId" Nullable="false" />
+    <Property Type="Int32" Name="StateId" Nullable="false" />
+    <Property Type="Int32" Name="Cityid" Nullable="false" />
+    <Property Type="String" Name="CountryName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="StateName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CityName" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="state_country_Result">
+    <Property Type="Int32" Name="CountryId" Nullable="false" />
+    <Property Type="Int32" Name="StateId" Nullable="false" />
+    <Property Type="String" Name="CountryName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="StateName" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="state_country_city_Result">
+    <Property Type="Int32" Name="CountryId" Nullable="false" />
+    <Property Type="Int32" Name="StateId" Nullable="false" />
+    <Property Type="Int32" Name="Cityid" Nullable="false" />
+    <Property Type="String" Name="CountryName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="StateName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CityName" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="Test_Order_Item_Result">
+    <Property Type="Int32" Name="OrderId" Nullable="false" />
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ItemsName" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="Int32" Name="Quantityt" Nullable="true" />
+    <Property Type="Int32" Name="ItemPrice" Nullable="true" />
+    <Property Type="Int32" Name="Total" Nullable="true" />
+  </ComplexType>
+</Schema>

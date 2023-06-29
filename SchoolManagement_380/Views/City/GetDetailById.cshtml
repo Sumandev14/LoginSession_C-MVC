@@ -1,0 +1,28 @@
+﻿@model SchoolManagement_380.Models.Models.CityModel
+
+@{
+    ViewBag.Title = "GetDetailById";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Country Name</th>
+            <th>State Name</th>
+            <th>City Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.CountryName</td>
+            <td>@Model.StateName</td>
+            <td>@Model.CityName</td>
+            <td>
+                <a class="btn btn-outline-info" href="/City/CountryStateCityList">All Detail</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

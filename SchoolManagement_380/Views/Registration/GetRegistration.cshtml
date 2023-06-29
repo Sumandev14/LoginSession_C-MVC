@@ -1,0 +1,45 @@
+﻿
+@model IEnumerable<SchoolManagement_380.Models.Models.RegModel>
+
+
+@{ ViewBag.Title = "GetRegistration";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+ }
+
+
+<div class="Container" style="margin-top:65px; margin-bottom : 50px">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>RoleName</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in ViewBag.GetAllList)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.RegNo</td>
+                    <td>@item.Address</td>
+                    <td>@item.Email</td>
+                    <td>@item.Password</td>
+                    <td>
+                        <a class="btn btn-info" href="/Registration/singleUserDetails/@item.StdId">Details</a>
+                        <a class="btn btn-primary" href="/Registration/CreateReg/@item.StdId">Edit</a>
+                        <a class="btn btn-danger" href="/Registration/DeleteReg/@item.StdId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-right">
+    <a href="/Registration/CreateReg" style="font-size:20px"><b>Create Registratio!!</b></a>
+</div>

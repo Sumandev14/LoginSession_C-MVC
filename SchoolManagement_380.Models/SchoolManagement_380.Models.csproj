@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B9B1410E-AC1A-42A3-9AA9-0816378D3D02}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SchoolManagement_380.Models</RootNamespace>
+    <AssemblyName>SchoolManagement_380.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\Unity.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\Unity.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc5, Version=1.4.0.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <HintPath>..\SchoolManagement_380\packages\Unity.Mvc5.1.4.0\lib\net45\Unity.Mvc5.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="DbContext\City.cs">
+      <DependentUpon>CountryStateCity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\Country.cs">
+      <DependentUpon>CountryStateCity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\CountryStateCity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CountryStateCity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\CountryStateCity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CountryStateCity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\CountryStateCity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CountryStateCity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\CouponCode.cs">
+      <DependentUpon>TestDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\DbRegistration.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbRegistration.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\DbRegistration.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbRegistration.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\DbRegistration.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbRegistration.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\Items.cs">
+      <DependentUpon>TestDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\orders.cs">
+      <DependentUpon>TestDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\Sp_state_country_city_Result.cs">
+      <DependentUpon>TestDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\States.cs">
+      <DependentUpon>CountryStateCity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\state_country_city_Result.cs">
+      <DependentUpon>TestDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\state_country_Result.cs">
+      <DependentUpon>TestDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\stdRegistration.cs">
+      <DependentUpon>DbRegistration.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\TestDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\TestDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\TestDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestDbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\Test_Order_Item_Result.cs">
+      <DependentUpon>TestDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbContext\UserName.cs">
+      <DependentUpon>TestDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CityModel.cs" />
+    <Compile Include="Models\CountryModel.cs" />
+    <Compile Include="Models\CoupenModel.cs" />
+    <Compile Include="Models\ItemModel.cs" />
+    <Compile Include="Models\LocalStorageModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\RegModel.cs" />
+    <Compile Include="Models\StateModel.cs" />
+    <Compile Include="Models\UserNameModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <EntityDeploy Include="DbContext\DbRegistration.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DbRegistration.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="DbContext\CountryStateCity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CountryStateCity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DbContext\CountryStateCity.edmx.diagram">
+      <DependentUpon>CountryStateCity.edmx</DependentUpon>
+    </None>
+    <None Include="DbContext\DbRegistration.edmx.diagram">
+      <DependentUpon>DbRegistration.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="DbContext\TestDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TestDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DbContext\TestDbModel.edmx.diagram">
+      <DependentUpon>TestDbModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DbContext\CountryStateCity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CountryStateCity.edmx</DependentUpon>
+      <LastGenOutput>CountryStateCity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DbContext\CountryStateCity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CountryStateCity.edmx</DependentUpon>
+      <LastGenOutput>CountryStateCity.cs</LastGenOutput>
+    </Content>
+    <Content Include="DbContext\DbRegistration.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DbRegistration.Context.cs</LastGenOutput>
+      <DependentUpon>DbRegistration.edmx</DependentUpon>
+    </Content>
+    <Content Include="DbContext\DbRegistration.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DbRegistration.edmx</DependentUpon>
+      <LastGenOutput>DbRegistration.cs</LastGenOutput>
+    </Content>
+    <Content Include="DbContext\TestDbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TestDbModel.edmx</DependentUpon>
+      <LastGenOutput>TestDbModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DbContext\TestDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TestDbModel.edmx</DependentUpon>
+      <LastGenOutput>TestDbModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
